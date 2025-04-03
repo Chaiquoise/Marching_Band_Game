@@ -31,6 +31,8 @@ public class LetterButton : MonoBehaviour
     public GameObject G4_button;
     public GameObject C4_button;
 
+    public bool secondSelect = false;
+
    
 
 
@@ -38,6 +40,8 @@ public class LetterButton : MonoBehaviour
     private int E_pressed = 0;
     private int G_pressed = 0;
     private int C_pressed = 0;
+
+    public GameObject lastClicked = null;
 
     public int maxTurnsPassed = 4; // how many turns we can take before all characters have taken an action
 
@@ -58,10 +62,20 @@ public class LetterButton : MonoBehaviour
     // This function will be called when the button is pressed
     public void ActivateLetter(GameObject ChosenLetter)
     {
-        IncrementRound(); //move us forward one round once a button is pressed
-        //calling the RoundCounter to make sure we know what round it is + update our turn arrow
-        gameManager.GetComponent<RoundCounter>().MoveForwardTurn();
-        
+
+        if (ChosenLetter == lastClicked)
+        {
+            secondSelect = true;
+        }
+        if (secondSelect == true)
+        {
+            secondSelect = false;
+
+
+            IncrementRound(); //move us forward one round once a button is pressed
+            //calling the RoundCounter to make sure we know what round it is + update our turn arrow
+            gameManager.GetComponent<RoundCounter>().MoveForwardTurn();
+
             if (ChosenLetter == A_button) //if we selected the A button
             {
                 A_pressed++;
@@ -157,25 +171,29 @@ public class LetterButton : MonoBehaviour
             }
 
 
-        if (turnsPassed <= maxTurnsPassed) //if not all characters have taken actions
-        {
 
-            // Set the letter to be active
-            ChosenLetter.SetActive(true);
+            if (turnsPassed <= maxTurnsPassed) //if not all characters have taken actions
+            {
 
-            // Calculate the new position based on the number of button presses
-            Vector3 newPosition = new Vector3(turnsPassed * offsetAmt + xPos, yPos, 0); // Adjusting the x-position
+                // Set the letter to be active
+                ChosenLetter.SetActive(true);
 
-            // Apply the new position to the ChosenLetter
-            ChosenLetter.transform.position = newPosition;
+                // Calculate the new position based on the number of button presses
+                Vector3 newPosition = new Vector3(turnsPassed * offsetAmt + xPos, yPos, 0); // Adjusting the x-position
+
+                // Apply the new position to the ChosenLetter
+                ChosenLetter.transform.position = newPosition;
+            }
+            else //if all band members have taken actions
+            {
+                endOfRoundAction(); //cue the special end of round effect
+                resetBoard(); //reset our board to the way it was at first
+            }
+
+
         }
-        else //if all band members have taken actions
-        {
-            endOfRoundAction(); //cue the special end of round effect
-            resetBoard(); //reset our board to the way it was at first
-        }
-
         Debug.Log(ChosenLetter); //checking which letter we say we've chosen
+        lastClicked = ChosenLetter;
     }
 
     public void IncrementRound() //move us forward one round
