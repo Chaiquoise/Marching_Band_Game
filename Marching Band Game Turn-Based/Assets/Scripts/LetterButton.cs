@@ -167,12 +167,38 @@ public class LetterButton : MonoBehaviour
             endOfRoundAction(); //cue the special end of round effect
             resetBoard(); //reset our board to the way it was at first
         }
+
+        Debug.Log(ChosenLetter); //checking which letter we say we've chosen
     }
 
     public void IncrementRound() //move us forward one round
     {
         turnsPassed++; //increment our turns passed by one
     }
+    /*
+    public void UndoAction() //undo the choice we just made
+    {
+
+        if (turnsPassed > 0) // Ensure there are actions to undo
+        {
+            // Log the current state (just for debugging)
+            Debug.Log("Turns passed: " + turnsPassed + ", last action: " + buttonList[turnsPassed - 1]);
+
+            // Remove the last action from buttonList
+            GameObject lastButton = buttonList[turnsPassed - 1]; // Get the last button
+
+            decrementLastButton(lastButton);
+            lastButton.SetActive(false); // Deactivate it (undo its effect)
+
+            // Decrement turnsPassed
+            turnsPassed--; // undo the turn
+        }
+        else
+        {
+            Debug.Log("No actions to undo.");
+        }
+    }
+    */
 
     public void endOfRoundAction()
     {
@@ -193,7 +219,31 @@ public class LetterButton : MonoBehaviour
         E_pressed = 0;
         G_pressed = 0;
         C_pressed = 0;
+
+        //Debug.Log(buttonList.ToString());
+        buttonList = new List<GameObject>(); //reset list to contain no objects since we're resetting the scene
         
+    }
+    public void decrementLastButton(GameObject button)
+    {
+        if (button == A_button || button == A2_button || button == A3_button || button == A4_button)
+        {
+            A_pressed--;
+        }
+        else if (button == E_button || button == E2_button || button == E3_button || button == E4_button)
+        {
+            E_pressed--;
+        }
+        else if (button == G_button || button == G2_button || button == G3_button || button == G4_button)
+        {
+            G_pressed--;
+        }
+        else
+        {
+            C_pressed--;
+        }
+
+        buttonList.RemoveAt(turnsPassed - 1); // Remove the last button from the list
     }
 
 }
