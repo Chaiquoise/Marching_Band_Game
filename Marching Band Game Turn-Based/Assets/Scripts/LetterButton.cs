@@ -31,6 +31,8 @@ public class LetterButton : MonoBehaviour
     public GameObject G4_button;
     public GameObject C4_button;
 
+   
+
 
     private int A_pressed = 0; //ints to check if the letter chosen has already been pressed
     private int E_pressed = 0;
@@ -41,19 +43,24 @@ public class LetterButton : MonoBehaviour
 
     private List<GameObject> buttonList = new List<GameObject>(); //creating a list of the letters we'll be spawning to access later
 
+    public GameObject gameManager;
+
     void Start()
     {
   //actually adding those gameobjects to our empty gameobject list
         buttonList.Add(E_button);
         buttonList.Add(G_button);
         buttonList.Add(C_button);
+
+        GameObject gameManager = GameObject.Find("GameManage");
     }
 
     // This function will be called when the button is pressed
     public void ActivateLetter(GameObject ChosenLetter)
     {
         IncrementRound(); //move us forward one round once a button is pressed
-
+        //calling the RoundCounter to make sure we know what round it is + update our turn arrow
+        gameManager.GetComponent<RoundCounter>().MoveForwardTurn();
         
             if (ChosenLetter == A_button) //if we selected the A button
             {

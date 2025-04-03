@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -15,10 +16,14 @@ public class EnemyBehavior : MonoBehaviour
     List<string> shieldNoteValues; 
     List<string> possibleNotes = new List<string> { "A", "E", "G", "C" };
 
+    public TextMeshProUGUI shieldDisplay;
+    public Slider HpBar;
+
     //should access health bar variable here and name it
 
     void Start() 
     {
+        HpBar.value = hp;
         CreateShield(lenShieldList);
     }
 
@@ -39,10 +44,12 @@ public class EnemyBehavior : MonoBehaviour
         if (!shieldUp)
         {
             hp -= amt;
+            //HpBar.value = hp;
         }
         else
         {
             hp -= (amt / reduceByShield);
+            //HpBar.value = hp;
         }
 
         //access our health bar child and update it with new value (but if it's less than 0 just set it to 0)
@@ -68,7 +75,8 @@ public class EnemyBehavior : MonoBehaviour
             shieldNoteValues.Add(possibleNotes[idx]);
         }
 
-        Debug.Log(string.Join(", ", shieldNoteValues));
+        //Debug.Log(string.Join(", ", shieldNoteValues));
+        shieldDisplay.text = string.Join("", shieldNoteValues);
         //generate a random list of notes for the shield values
         //display them with UI
     }

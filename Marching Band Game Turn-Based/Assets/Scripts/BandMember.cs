@@ -8,7 +8,23 @@ public class BandMember : MonoBehaviour
     public int hp = 10; //making it public so we can access this elsewhere/change it
     public int ap = 5; //ap = attack power, use this to dmg enemies
 
+    public Slider HpBar; //player hp bar UI
+    public GameObject MyTurn;
+
+    public bool IsMyTurn = false;
+
     //should access health bar variable here and name it
+    void Start()
+    {
+        HpBar.value = hp;
+    }
+    void Update()
+    {
+        if (IsMyTurn == true)
+        {
+            activateTurn();
+        }
+    }
 
     public void die()
     {
@@ -18,6 +34,7 @@ public class BandMember : MonoBehaviour
     public void attack(GameObject enemyName)
     {
         //write code for when we attack an enemy here
+        //enemyName.enemyBehavior.takeDmg();
     }
     public void heal(int amt)
     {
@@ -34,5 +51,14 @@ public class BandMember : MonoBehaviour
         {
             die();
         }
+    }
+    public void activateTurn() //call this to display turn arrow
+    {
+        MyTurn.SetActive(true);
+        IsMyTurn = false;
+    }
+    public void deactivateTurn() //call this to deactivate turn arrow
+    {
+        MyTurn.SetActive(false);
     }
 }
