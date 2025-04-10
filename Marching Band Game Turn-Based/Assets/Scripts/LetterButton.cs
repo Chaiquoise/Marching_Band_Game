@@ -48,7 +48,7 @@ public class LetterButton : MonoBehaviour
 
     public GameObject lastClicked = null;
 
-    public int maxTurnsPassed = 3; // how many turns we can take before all characters have taken an action
+    public int maxTurnsPassed = 2; // how many turns we can take before all characters have taken an action
 
     private List<GameObject> buttonList = new List<GameObject>(); //creating a list of the letters we'll be spawning to access later
 
@@ -73,7 +73,7 @@ public class LetterButton : MonoBehaviour
 
                 
             gameManager.GetComponent<RoundCounter>().MoveForwardTurn();
-            gameManager.GetComponent<RoundCounter>().MakeAttack(turnsPassed, ChosenLetter);
+            //gameManager.GetComponent<RoundCounter>().MakeAttack(turnsPassed, ChosenLetter);
 
 
 
@@ -173,7 +173,7 @@ public class LetterButton : MonoBehaviour
 
 
 
-            if (turnsPassed <= maxTurnsPassed) //if not all characters have taken actions
+            if (turnsPassed < maxTurnsPassed) //if not all characters have taken actions
             {
 
                 // Set the letter to be active
@@ -184,6 +184,21 @@ public class LetterButton : MonoBehaviour
 
                 // Apply the new position to the ChosenLetter
                 ChosenLetter.transform.position = newPosition;
+            }
+            else if (turnsPassed == maxTurnsPassed)
+            {
+
+                // Set the letter to be active
+                ChosenLetter.SetActive(true);
+
+                // Calculate the new position based on the number of button presses
+                Vector3 newPosition = new Vector3(turnsPassed * offsetAmt + xPos, yPos, 0); // Adjusting the x-position
+
+                // Apply the new position to the ChosenLetter
+                ChosenLetter.transform.position = newPosition;
+
+                finalRound();
+
             }
             else //if all band members have taken actions
             {
@@ -266,6 +281,17 @@ public class LetterButton : MonoBehaviour
         }
 
         buttonList.RemoveAt(turnsPassed - 1); // Remove the last button from the list
+    }
+
+    public void prepareAttack(GameObject button)
+    {
+
+    }
+
+    public void finalRound()
+    {
+        Debug.Log("this is the last round!!");
+        gameManager.GetComponent<RoundCounter>().EndRound();
     }
 
 }

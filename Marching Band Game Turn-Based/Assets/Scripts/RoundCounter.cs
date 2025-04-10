@@ -26,8 +26,12 @@ public class RoundCounter : MonoBehaviour
 
     public void MoveForwardTurn()
     {
-        
-        (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().IsMyTurn = true;
+        foreach (GameObject player in TurnOrder)
+        {
+            player.GetComponent<BandMember>().deactivateTurn();
+        }
+
+        (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().activateTurn();
 
         if (TurnOrderIndex != 0)
         {
@@ -59,6 +63,7 @@ public class RoundCounter : MonoBehaviour
     public void EndRound()
     {
         Debug.Log("round ending");
+
         foreach (GameObject player in TurnOrder)
         {
             player.GetComponent<BandMember>().deactivateTurn();
