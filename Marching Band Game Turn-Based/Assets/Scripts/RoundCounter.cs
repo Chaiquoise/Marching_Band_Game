@@ -11,7 +11,11 @@ public class RoundCounter : MonoBehaviour
     public GameObject player3;
     public GameObject player4;
 
+    public GameObject enemy;
+
     private int TurnOrderIndex = 0;
+
+    public bool firstTurn = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +26,25 @@ public class RoundCounter : MonoBehaviour
 
     public void MoveForwardTurn()
     {
-
+        
         (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().IsMyTurn = true;
 
-        Debug.Log("this is where we move forward one turn");
-
-        TurnOrderIndex += 1; //increase the amount of turns we've passed by 1
-        if (TurnOrderIndex > 3)
+        if (TurnOrderIndex != 0)
         {
+            (TurnOrder[TurnOrderIndex - 1]).GetComponent<BandMember>().deactivateTurn();
+        }
+        
+        if (TurnOrderIndex >= 3)
+        {
+            //(TurnOrder[TurnOrderIndex - 1]).GetComponent<BandMember>().IsMyTurn = false;
             TurnOrderIndex = 0;
+            firstTurn = true;
 
         }
-                
+        else
+        {
+            TurnOrderIndex += 1; //increase the amount of turns we've passed by 1
+        }
     }
 
     public void CreateTurnOrderList()
@@ -43,6 +54,24 @@ public class RoundCounter : MonoBehaviour
         TurnOrder.Add(player2);
         TurnOrder.Add(player3);
         TurnOrder.Add(player4);
+    }
+
+    public void EndRound()
+    {
+        Debug.Log("round ending");
+        foreach (GameObject player in TurnOrder)
+        {
+            player.GetComponent<BandMember>().deactivateTurn();
+        }
+
+        TurnOrderIndex = 0;
+
+    }
+    public void MakeAttack(int turns, GameObject Letter)
+    {
+        //GameObject currentPlayer = TurnOrder[turns - 1];
+        //Debug.Log(currentPlayer);
+        //currentPlayer.GetComponent<BandMember>().attack(Letter, enemy);
     }
 
 }

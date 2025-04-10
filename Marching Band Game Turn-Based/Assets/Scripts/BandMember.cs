@@ -31,10 +31,11 @@ public class BandMember : MonoBehaviour
         //write code for when char dies here
         //probably access an animator and trigger a death animation
     }
-    public void attack(GameObject enemyName)
+    public void attack(GameObject button, GameObject enemyName)
     {
         //write code for when we attack an enemy here
-        //enemyName.enemyBehavior.takeDmg();
+        enemyName.GetComponent<EnemyBehavior>().TakeDmg(5);
+        Debug.Log("ATTACK!!!");
     }
     public void heal(int amt)
     {

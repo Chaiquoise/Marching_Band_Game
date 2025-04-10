@@ -31,10 +31,15 @@ public class LetterButton : MonoBehaviour
     public GameObject G4_button;
     public GameObject C4_button;
 
+    public GameObject enemy;
+
+    public GameObject player1;
+    public GameObject player2;
+    public GameObject player3;
+    public GameObject player4;
+
+
     public bool secondSelect = false;
-
-   
-
 
     private int A_pressed = 0; //ints to check if the letter chosen has already been pressed
     private int E_pressed = 0;
@@ -43,7 +48,7 @@ public class LetterButton : MonoBehaviour
 
     public GameObject lastClicked = null;
 
-    public int maxTurnsPassed = 4; // how many turns we can take before all characters have taken an action
+    public int maxTurnsPassed = 3; // how many turns we can take before all characters have taken an action
 
     private List<GameObject> buttonList = new List<GameObject>(); //creating a list of the letters we'll be spawning to access later
 
@@ -63,20 +68,16 @@ public class LetterButton : MonoBehaviour
     public void ActivateLetter(GameObject ChosenLetter)
     {
 
-        if (ChosenLetter == lastClicked)
-        {
-            secondSelect = true;
-        }
-        if (secondSelect == true)
-        {
-            secondSelect = false;
-
-
             IncrementRound(); //move us forward one round once a button is pressed
             //calling the RoundCounter to make sure we know what round it is + update our turn arrow
-            gameManager.GetComponent<RoundCounter>().MoveForwardTurn();
 
-            if (ChosenLetter == A_button) //if we selected the A button
+                
+            gameManager.GetComponent<RoundCounter>().MoveForwardTurn();
+            gameManager.GetComponent<RoundCounter>().MakeAttack(turnsPassed, ChosenLetter);
+
+
+
+        if (ChosenLetter == A_button) //if we selected the A button
             {
                 A_pressed++;
                 if (A_pressed == 1)
@@ -189,11 +190,6 @@ public class LetterButton : MonoBehaviour
                 endOfRoundAction(); //cue the special end of round effect
                 resetBoard(); //reset our board to the way it was at first
             }
-
-
-        }
-        Debug.Log(ChosenLetter); //checking which letter we say we've chosen
-        lastClicked = ChosenLetter;
     }
 
     public void IncrementRound() //move us forward one round
@@ -239,7 +235,8 @@ public class LetterButton : MonoBehaviour
             button.SetActive(false);
         }
 
-        
+        gameManager.GetComponent<RoundCounter>().EndRound();
+
         A_pressed = 0; //reset all pressed amts to 0
         E_pressed = 0;
         G_pressed = 0;

@@ -44,12 +44,12 @@ public class EnemyBehavior : MonoBehaviour
         if (!shieldUp)
         {
             hp -= amt;
-            //HpBar.value = hp;
+            HpBar.value = hp;
         }
         else
         {
             hp -= (amt / reduceByShield);
-            //HpBar.value = hp;
+            HpBar.value = hp;
         }
 
         //access our health bar child and update it with new value (but if it's less than 0 just set it to 0)
