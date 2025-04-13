@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemySelectTarget : MonoBehaviour
 {
-    
+    public GameObject parentEnemy;
 
     public void SetTarget(GameObject target)
     {
         target.SetActive(true);
+        //RoundCounter.GetComponent<RoundCounter>().targetedEnemy = parentEnemy;
     }
 
     public void DeactivateTarget(GameObject othertarget)
@@ -16,5 +17,9 @@ public class EnemySelectTarget : MonoBehaviour
         othertarget.SetActive(false);
     }
 
+    public void resetTargetManager(GameObject manager)
+    {
+        manager.GetComponent<RoundCounter>().SetNewTarget(parentEnemy);
+    }
 
 }

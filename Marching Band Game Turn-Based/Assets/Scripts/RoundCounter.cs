@@ -11,6 +11,10 @@ public class RoundCounter : MonoBehaviour
     public GameObject player3;
     public GameObject player4;
 
+    public GameObject turnHolder; //the person's turn that it currently is
+    public GameObject targetedEnemy; //currently targeted enemy
+    public string selectedButton; //button that was just pressed
+
     public GameObject enemy;
 
     private int TurnOrderIndex = 0;
@@ -31,8 +35,6 @@ public class RoundCounter : MonoBehaviour
             player.GetComponent<BandMember>().deactivateTurn();
         }
 
-        (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().activateTurn();
-
         if (TurnOrderIndex != 0)
         {
             (TurnOrder[TurnOrderIndex - 1]).GetComponent<BandMember>().deactivateTurn();
@@ -41,12 +43,16 @@ public class RoundCounter : MonoBehaviour
         if (TurnOrderIndex >= 3)
         {
             //(TurnOrder[TurnOrderIndex - 1]).GetComponent<BandMember>().IsMyTurn = false;
+            (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().activateTurn();
+            (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().attack(selectedButton, targetedEnemy);
             TurnOrderIndex = 0;
             firstTurn = true;
+            
 
         }
         else
         {
+            (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().activateTurn();
             TurnOrderIndex += 1; //increase the amount of turns we've passed by 1
         }
     }
@@ -78,5 +84,8 @@ public class RoundCounter : MonoBehaviour
         //Debug.Log(currentPlayer);
         //currentPlayer.GetComponent<BandMember>().attack(Letter, enemy);
     }
-
+    public void SetNewTarget(GameObject newTarget)
+    {
+        targetedEnemy = newTarget;
+    }
 }

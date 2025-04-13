@@ -171,7 +171,8 @@ public class LetterButton : MonoBehaviour
                 }
             }
 
-
+            string stringButton = ChosenLetter.ToString();
+            gameManager.GetComponent<RoundCounter>().selectedButton = stringButton;
 
             if (turnsPassed < maxTurnsPassed) //if not all characters have taken actions
             {
