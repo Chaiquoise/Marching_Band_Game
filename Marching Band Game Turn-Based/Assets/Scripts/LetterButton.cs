@@ -284,11 +284,6 @@ public class LetterButton : MonoBehaviour
         buttonList.RemoveAt(turnsPassed - 1); // Remove the last button from the list
     }
 
-    public void prepareAttack(GameObject button)
-    {
-
-    }
-
     public void finalRound()
     {
         Debug.Log("this is the last round!!");

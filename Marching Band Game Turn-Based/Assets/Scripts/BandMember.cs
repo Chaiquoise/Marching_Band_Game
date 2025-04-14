@@ -36,6 +36,7 @@ public class BandMember : MonoBehaviour
         //write code for when we attack an enemy here
         enemyName.GetComponent<EnemyBehavior>().TakeDmg(5);
         enemyName.GetComponent<EnemyBehavior>().LoseSomeShield(button);
+        Debug.Log(button);
         Debug.Log("ATTACK!!!");
     }
     public void heal(int amt)

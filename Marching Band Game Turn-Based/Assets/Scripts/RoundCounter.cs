@@ -14,12 +14,11 @@ public class RoundCounter : MonoBehaviour
     public GameObject turnHolder; //the person's turn that it currently is
     public GameObject targetedEnemy; //currently targeted enemy
     public string selectedButton; //button that was just pressed
-
-    public GameObject enemy;
-
     private int TurnOrderIndex = 0;
 
     public bool firstTurn = true;
+
+    private List<Transform> targetList = new List<Transform>(); //remember any targets we've seen before
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +34,8 @@ public class RoundCounter : MonoBehaviour
             player.GetComponent<BandMember>().deactivateTurn();
         }
 
+        (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().attack(selectedButton, targetedEnemy);
+
         if (TurnOrderIndex != 0)
         {
             (TurnOrder[TurnOrderIndex - 1]).GetComponent<BandMember>().deactivateTurn();
@@ -44,7 +45,7 @@ public class RoundCounter : MonoBehaviour
         {
             //(TurnOrder[TurnOrderIndex - 1]).GetComponent<BandMember>().IsMyTurn = false;
             (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().activateTurn();
-            (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().attack(selectedButton, targetedEnemy);
+            
             TurnOrderIndex = 0;
             firstTurn = true;
             
@@ -86,6 +87,22 @@ public class RoundCounter : MonoBehaviour
     }
     public void SetNewTarget(GameObject newTarget)
     {
+        Transform targetTransform = newTarget.transform.Find("Target");
         targetedEnemy = newTarget;
+        targetTransform.gameObject.SetActive(true);
+
+        bool containCheck = (targetList.Contains(targetTransform));
+        if (containCheck == false)
+        {
+            targetList.Add(targetTransform);
+        }
+
+        foreach (Transform target in targetList)
+        {
+            if (target != targetTransform)
+            {
+                target.gameObject.SetActive(false);
+            }
+        }
     }
 }

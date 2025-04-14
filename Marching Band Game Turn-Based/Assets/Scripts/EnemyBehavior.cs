@@ -61,6 +61,12 @@ public class EnemyBehavior : MonoBehaviour
 
     public void LoseSomeShield(string note)
     {
+        int length = shieldNoteValues.Count - 1;
+        if (shieldNoteValues[length] == note)
+        {
+            shieldNoteValues.RemoveAt(length);
+        }
+
         //remove one of the shield vals
         //both from UI and from actual list in code
     }
