@@ -68,14 +68,19 @@ public class LetterButton : MonoBehaviour
     public void ActivateLetter(GameObject ChosenLetter)
     {
 
-            IncrementRound(); //move us forward one round once a button is pressed
-            //calling the RoundCounter to make sure we know what round it is + update our turn arrow
+        IncrementRound(); //move us forward one round once a button is pressed
+        //calling the RoundCounter to make sure we know what round it is + update our turn arrow
 
                 
-            gameManager.GetComponent<RoundCounter>().MoveForwardTurn();
-            //gameManager.GetComponent<RoundCounter>().MakeAttack(turnsPassed, ChosenLetter);
+        
+    //gameManager.GetComponent<RoundCounter>().MakeAttack(turnsPassed, ChosenLetter);
 
+        string stringButton = ChosenLetter.ToString();
+        Debug.Log("Chosen Letter (In letter button) is :" + ChosenLetter);
+        Debug.Log("String Version (In letter button) is :" + stringButton);
+        gameManager.GetComponent<RoundCounter>().selectedButton = stringButton;
 
+        gameManager.GetComponent<RoundCounter>().MoveForwardTurn();
 
         if (ChosenLetter == A_button) //if we selected the A button
             {
@@ -170,9 +175,6 @@ public class LetterButton : MonoBehaviour
                     ChosenLetter = C4_button;
                 }
             }
-
-            string stringButton = ChosenLetter.ToString();
-            gameManager.GetComponent<RoundCounter>().selectedButton = stringButton;
 
             if (turnsPassed < maxTurnsPassed) //if not all characters have taken actions
             {

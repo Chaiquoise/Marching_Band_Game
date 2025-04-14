@@ -33,8 +33,8 @@ public class RoundCounter : MonoBehaviour
         {
             player.GetComponent<BandMember>().deactivateTurn();
         }
-
-        (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().attack(selectedButton, targetedEnemy);
+        Debug.Log("selected Button in roundcounter is " + (selectedButton.ToString()));
+        TurnOrder[TurnOrderIndex].GetComponent<BandMember>().attack(selectedButton.ToString(), targetedEnemy);
 
         if (TurnOrderIndex != 0)
         {

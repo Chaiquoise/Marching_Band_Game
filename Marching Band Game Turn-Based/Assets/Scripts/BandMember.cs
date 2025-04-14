@@ -33,10 +33,33 @@ public class BandMember : MonoBehaviour
     }
     public void attack(string button, GameObject enemyName)
     {
+        Debug.Log("the button is " + button);
+
+        if (button == "A1 (UnityEngine.GameObject)" || button == "A2 (UnityEngine.GameObject)" || button == "A3 (UnityEngine.GameObject)" || button == "A4 (UnityEngine.GameObject)")
+        {
+            Debug.Log("button being changed to A");
+            button = "A";
+        }
+        else if (button == "E1 (UnityEngine.GameObject)" || button == "E2 (UnityEngine.GameObject)" || button == "E3 (UnityEngine.GameObject)" || button == "E4 (UnityEngine.GameObject)")
+        {
+            Debug.Log("button being changed to E");
+            button = "E";
+        }
+        else if (button == "G1 (UnityEngine.GameObject)" || button == "G2 (UnityEngine.GameObject)" || button == "G3 (UnityEngine.GameObject)" || button == "G4 (UnityEngine.GameObject)")
+        {
+            Debug.Log("button being changed to G");
+            button = "G";
+        }
+        else
+        {
+            Debug.Log("button being changed from " + button + " to C");
+            button = "C";
+        }
         //write code for when we attack an enemy here
-        enemyName.GetComponent<EnemyBehavior>().TakeDmg(5);
-        enemyName.GetComponent<EnemyBehavior>().LoseSomeShield(button);
         Debug.Log(button);
+        enemyName.GetComponent<EnemyBehavior>().TakeDmg(ap); //enemy take damage based on our attack power
+        enemyName.GetComponent<EnemyBehavior>().LoseSomeShield(button); //see if button matches to remove from beg of shield
+        
         Debug.Log("ATTACK!!!");
     }
     public void heal(int amt)

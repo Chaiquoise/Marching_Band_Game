@@ -61,10 +61,13 @@ public class EnemyBehavior : MonoBehaviour
 
     public void LoseSomeShield(string note)
     {
-        int length = shieldNoteValues.Count - 1;
-        if (shieldNoteValues[length] == note)
+
+        Debug.Log($"index 0 is {shieldNoteValues[0]}");
+        Debug.Log($"value coming in from string is {note}");
+        if (shieldNoteValues[0] == note)
         {
-            shieldNoteValues.RemoveAt(length);
+            shieldNoteValues.RemoveAt(0);
+            shieldDisplay.text = string.Join("", shieldNoteValues);
         }
 
         //remove one of the shield vals
