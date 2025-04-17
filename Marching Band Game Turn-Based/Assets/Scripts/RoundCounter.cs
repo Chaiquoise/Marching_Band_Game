@@ -22,6 +22,8 @@ public class RoundCounter : MonoBehaviour
 
     private List<Transform> targetList = new List<Transform>(); //remember any targets we've seen before
 
+    public GameObject letterButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,18 +62,15 @@ public class RoundCounter : MonoBehaviour
             (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().activateTurn();
             
             TurnOrderIndex = 0;
-            firstTurn = true;
+            //firstTurn = true;
             
 
         }
         else
         {
             (TurnOrder[TurnOrderIndex]).GetComponent<BandMember>().activateTurn();
+            TurnOrderIndex += 1; //increase the amount of turns we've passed by 1
 
-            if (firstTurn != true)
-            {
-                TurnOrderIndex += 1; //increase the amount of turns we've passed by 1
-            }
 
             firstTurn = false;
         }
@@ -96,6 +95,9 @@ public class RoundCounter : MonoBehaviour
         }
 
         TurnOrderIndex = 0;
+
+        firstTurn = true;
+
 
     }
     public void MakeAttack(int turns, GameObject Letter)

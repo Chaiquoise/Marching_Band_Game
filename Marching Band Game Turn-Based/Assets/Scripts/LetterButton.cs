@@ -57,9 +57,9 @@ public class LetterButton : MonoBehaviour
     void Start()
     {
   //actually adding those gameobjects to our empty gameobject list
-        buttonList.Add(E_button);
-        buttonList.Add(G_button);
-        buttonList.Add(C_button);
+        //buttonList.Add(E_button);
+        //buttonList.Add(G_button);
+        //buttonList.Add(C_button);
 
         GameObject gameManager = GameObject.Find("GameManage");
     }
@@ -200,7 +200,7 @@ public class LetterButton : MonoBehaviour
                 // Apply the new position to the ChosenLetter
                 ChosenLetter.transform.position = newPosition;
 
-                finalRound();
+                //finalRound();
 
             }
             else //if all band members have taken actions
@@ -260,6 +260,11 @@ public class LetterButton : MonoBehaviour
         G_pressed = 0;
         C_pressed = 0;
 
+        foreach (GameObject button in buttonList)
+        {
+            Debug.Log(button.ToString());
+        }
+
         //Debug.Log(buttonList.ToString());
         buttonList = new List<GameObject>(); //reset list to contain no objects since we're resetting the scene
         
@@ -286,11 +291,6 @@ public class LetterButton : MonoBehaviour
         buttonList.RemoveAt(turnsPassed - 1); // Remove the last button from the list
     }
 
-    public void finalRound()
-    {
-        Debug.Log("this is the last round!!");
-        gameManager.GetComponent<RoundCounter>().EndRound();
-    }
 
 }
 

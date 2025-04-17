@@ -1605,6 +1605,7 @@ MonoBehaviour:
   targetedEnemy: {fileID: 262784446}
   selectedButton: 
   firstTurn: 1
+  letterButton: {fileID: 1130253918}
 --- !u!4 &821086062
 Transform:
   m_ObjectHideFlags: 0
