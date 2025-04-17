@@ -1600,6 +1600,7 @@ MonoBehaviour:
   player2: {fileID: 311132568}
   player3: {fileID: 1447649792}
   player4: {fileID: 1787513965}
+  initialTarget: {fileID: 262784446}
   turnHolder: {fileID: 0}
   targetedEnemy: {fileID: 262784446}
   selectedButton: 
