@@ -43,6 +43,8 @@ public class LetterButton : MonoBehaviour
     public GameObject player3;
     public GameObject player4;
 
+    public GameObject referenceToGoldNote; //reference to the empty gameobject that holds gold note script
+
     public GameObject goldNoteButton; //golden note we can press for end of round effect
 
 
@@ -212,7 +214,7 @@ public class LetterButton : MonoBehaviour
             }
             else //if all band members have taken actions
             {
-                resetBoard(); //reset our board to the way it was at first
+                //resetBoard(); //reset our board to the way it was at first
             }
     }
 
@@ -298,7 +300,11 @@ public class LetterButton : MonoBehaviour
         BIGG.SetActive(false);
         BIGC.SetActive(false);
 
+        referenceToGoldNote.GetComponent<GoldNoteAction>().buttonList = buttonList;
+
         goldNote.SetActive(true);
+
+        
 
     }
 
