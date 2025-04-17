@@ -1550,6 +1550,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 821086060}
+    - target: {fileID: 6747897905796628116, guid: 21ae3365bdcbf794f9b45ffa099b8099, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7421590084073385699, guid: 21ae3365bdcbf794f9b45ffa099b8099, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -7201,7 +7205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -261, y: 100.47107}
+  m_AnchoredPosition: {x: -119, y: 100.47107}
   m_SizeDelta: {x: 126.4421, y: 126.4421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216124741
@@ -7811,7 +7815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -122.34485, y: 242}
+  m_AnchoredPosition: {x: -262, y: 100}
   m_SizeDelta: {x: 126.4421, y: 126.4421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1340652619
@@ -7938,8 +7942,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterManager: {fileID: 1130253918}
-  referenceToSelf: {fileID: 0}
   buttonList: []
+  enemiesInScene: []
+  convertedLetters: []
 --- !u!4 &1355195500
 Transform:
   m_ObjectHideFlags: 0
@@ -8846,7 +8851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -122.34485, y: 100.47107}
+  m_AnchoredPosition: {x: -122.34485, y: 242}
   m_SizeDelta: {x: 126.4421, y: 126.4421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646991168
@@ -10725,6 +10730,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 821086060}
+    - target: {fileID: 6747897905796628116, guid: 21ae3365bdcbf794f9b45ffa099b8099, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7421590084073385699, guid: 21ae3365bdcbf794f9b45ffa099b8099, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
