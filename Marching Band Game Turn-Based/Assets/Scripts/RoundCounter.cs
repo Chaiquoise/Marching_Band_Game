@@ -6,6 +6,8 @@ public class RoundCounter : MonoBehaviour
 {
     private List<GameObject> TurnOrder = new List<GameObject>(); //creating a list of the players to control turn order
 
+    public List<GameObject> EnemyList = new List<GameObject>();
+
     public GameObject player1; //assign values for players to then add to list
     public GameObject player2;
     public GameObject player3;
@@ -124,6 +126,39 @@ public class RoundCounter : MonoBehaviour
             {
                 target.gameObject.SetActive(false);
             }
+        }
+    }
+    //end of round actions:
+    public void ChordAll()
+    {
+        Debug.Log("all the same!");
+        RemoveGoldenShield();
+
+    }
+    public void ChordDoubleDouble()
+    {
+        Debug.Log("first two and last two!");
+        RemoveGoldenShield();
+
+    }
+    public void ChordAlpha()
+    {
+        Debug.Log("Alphabetical!");
+        RemoveGoldenShield();
+
+    }
+    public void DamageAllEnemies()
+    {
+        foreach (GameObject enemy in EnemyList)
+        {
+            enemy.GetComponent<EnemyBehavior>().TakeDmg(20);
+        }
+    }
+    public void RemoveGoldenShield()
+    {
+        foreach (GameObject enemy in EnemyList)
+        {
+            enemy.GetComponent<EnemyBehavior>().LoseSomeShield("#");
         }
     }
 }

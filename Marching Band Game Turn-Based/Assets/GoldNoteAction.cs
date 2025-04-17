@@ -5,7 +5,7 @@ using UnityEngine;
 public class GoldNoteAction : MonoBehaviour
 {
     public GameObject letterManager;
-
+    public GameObject roundCounter;
 
     public List<GameObject> buttonList;
     public List<GameObject> enemiesInScene;
@@ -46,16 +46,22 @@ public class GoldNoteAction : MonoBehaviour
         //check first if all notes are the same
         if ((convertedLetters[0] == convertedLetters[3]) && (convertedLetters[2] == convertedLetters[1]) && (convertedLetters[1] == convertedLetters[3]))
         {
-            Debug.Log("all the same!");
+            
+            roundCounter.GetComponent<RoundCounter>().ChordAll();
         }
         else if ((convertedLetters[0] == convertedLetters[1]) && (convertedLetters[2] == convertedLetters[3]))
         {
-            Debug.Log("first two and last two!");
+            
+            roundCounter.GetComponent<RoundCounter>().ChordDoubleDouble();
         }
         else if ((convertedLetters[0] == "A") && (convertedLetters[1] == "C") && (convertedLetters[2] == "E") && (convertedLetters[3] == "G"))
         {
-            Debug.Log("Alphabetical!");
+            
+            roundCounter.GetComponent<RoundCounter>().ChordAlpha();
         }
+
+        roundCounter.GetComponent<RoundCounter>().DamageAllEnemies();
+        //roundCounter.GetComponent<RoundCounter>().RemoveGoldenShield();
 
     }
 }

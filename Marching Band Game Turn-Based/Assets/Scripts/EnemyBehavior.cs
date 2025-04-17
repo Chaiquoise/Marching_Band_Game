@@ -13,8 +13,12 @@ public class EnemyBehavior : MonoBehaviour
     public int reduceByShield = 3;
     public int lenShieldList = 4;
 
+    public GameObject refToParent;
+
+    public GameObject roundCounter;
+
     List<string> shieldNoteValues; 
-    List<string> possibleNotes = new List<string> { "A", "E", "G", "C" };
+    List<string> possibleNotes = new List<string> { "A", "A", "E", "E", "G", "G", "C", "C", "#" };
 
     public TextMeshProUGUI shieldDisplay;
     public Slider HpBar;
@@ -25,6 +29,8 @@ public class EnemyBehavior : MonoBehaviour
     {
         HpBar.value = hp;
         CreateShield(lenShieldList);
+
+        roundCounter.GetComponent<RoundCounter>().EnemyList.Add(refToParent);
     }
 
     public void Die() 
@@ -80,7 +86,7 @@ public class EnemyBehavior : MonoBehaviour
 
         for (int i = 0; i < lengthList; i++)
         {
-            int idx = UnityEngine.Random.Range(0, 4); // Unity's Random.Range
+            int idx = UnityEngine.Random.Range(0, 9); // Unity's Random.Range, end point IS included
             shieldNoteValues.Add(possibleNotes[idx]);
         }
 

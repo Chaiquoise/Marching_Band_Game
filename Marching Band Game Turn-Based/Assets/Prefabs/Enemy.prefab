@@ -757,6 +757,8 @@ MonoBehaviour:
   shieldUp: 1
   reduceByShield: 3
   lenShieldList: 4
+  refToParent: {fileID: 7451154505571964200}
+  roundCounter: {fileID: 0}
   shieldDisplay: {fileID: 8604678567919659658}
   HpBar: {fileID: 1127154243067489894}
 --- !u!1 &8772771840889918642
