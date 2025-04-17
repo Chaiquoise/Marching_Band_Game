@@ -9,6 +9,11 @@ public class LetterButton : MonoBehaviour
     public float yPos;
     public float xPos;
 
+    public GameObject BIGA;
+    public GameObject BIGE;
+    public GameObject BIGG;
+    public GameObject BIGC;
+
     public GameObject A_button; //initialize gameobjects w/ relevant names
     public GameObject E_button;
     public GameObject G_button;
@@ -37,6 +42,8 @@ public class LetterButton : MonoBehaviour
     public GameObject player2;
     public GameObject player3;
     public GameObject player4;
+
+    public GameObject goldNoteButton; //golden note we can press for end of round effect
 
 
     public bool secondSelect = false;
@@ -200,12 +207,11 @@ public class LetterButton : MonoBehaviour
                 // Apply the new position to the ChosenLetter
                 ChosenLetter.transform.position = newPosition;
 
-                //finalRound();
+                goldenNote(goldNoteButton);
 
             }
             else //if all band members have taken actions
             {
-                endOfRoundAction(); //cue the special end of round effect
                 resetBoard(); //reset our board to the way it was at first
             }
     }
@@ -239,10 +245,6 @@ public class LetterButton : MonoBehaviour
     }
     */
 
-    public void endOfRoundAction()
-    {
-        //here's where the special end-of-round effect would happen
-    }
     public void resetBoard()
     {
         //reset the whole board back to where it started
@@ -260,10 +262,8 @@ public class LetterButton : MonoBehaviour
         G_pressed = 0;
         C_pressed = 0;
 
-        foreach (GameObject button in buttonList)
-        {
-            Debug.Log(button.ToString());
-        }
+
+        goldenNote(goldNoteButton);
 
         //Debug.Log(buttonList.ToString());
         buttonList = new List<GameObject>(); //reset list to contain no objects since we're resetting the scene
@@ -289,6 +289,17 @@ public class LetterButton : MonoBehaviour
         }
 
         buttonList.RemoveAt(turnsPassed - 1); // Remove the last button from the list
+    }
+
+    public void goldenNote(GameObject goldNote)
+    {
+        BIGA.SetActive(false);
+        BIGE.SetActive(false);
+        BIGG.SetActive(false);
+        BIGC.SetActive(false);
+
+        goldNote.SetActive(true);
+
     }
 
 
