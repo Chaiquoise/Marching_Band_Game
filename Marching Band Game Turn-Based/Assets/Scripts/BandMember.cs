@@ -20,10 +20,10 @@ public class BandMember : MonoBehaviour
     }
     void Update()
     {
-        if (IsMyTurn == true)
-        {
-            activateTurn();
-        }
+        //if (IsMyTurn == true)
+        //{
+            //activateTurn();
+        //}
     }
 
     public void die()

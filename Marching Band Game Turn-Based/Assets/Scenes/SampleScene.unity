@@ -7114,10 +7114,10 @@ MonoBehaviour:
   G4_button: {fileID: 1681440645}
   C4_button: {fileID: 1384312490}
   enemy: {fileID: 0}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
-  player3: {fileID: 0}
-  player4: {fileID: 0}
+  player1: {fileID: 1415821304}
+  player2: {fileID: 311132568}
+  player3: {fileID: 1447649792}
+  player4: {fileID: 1787513965}
   referenceToGoldNote: {fileID: 1355195498}
   goldNoteButton: {fileID: 2044964554}
   secondSelect: 0

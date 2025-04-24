@@ -300,12 +300,11 @@ public class LetterButton : MonoBehaviour
         BIGG.SetActive(false);
         BIGC.SetActive(false);
 
+        player1.GetComponent<BandMember>().deactivateTurn(); //go to the first player and make sure target doesn't display yet
+
         referenceToGoldNote.GetComponent<GoldNoteAction>().buttonList = buttonList;
 
         goldNote.SetActive(true);
-
-        
-
     }
 
     public void endGoldenNote()
@@ -315,13 +314,12 @@ public class LetterButton : MonoBehaviour
         BIGG.SetActive(true);
         BIGC.SetActive(true);
         turnsPassed = 0;
+        player1.GetComponent<BandMember>().activateTurn();
+
+        gameManager.GetComponent<RoundCounter>().MoveForwardTurn(); //resetting our turn order to 0
 
         goldNoteButton.SetActive(false);
-
-
-
     }
-
 
 }
 

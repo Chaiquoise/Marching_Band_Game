@@ -18,7 +18,7 @@ public class RoundCounter : MonoBehaviour
     public GameObject turnHolder; //the person's turn that it currently is
     public GameObject targetedEnemy; //currently targeted enemy
     public string selectedButton; //button that was just pressed
-    private int TurnOrderIndex = 0;
+    public int TurnOrderIndex = 0;
 
     public bool firstTurn = true;
 
