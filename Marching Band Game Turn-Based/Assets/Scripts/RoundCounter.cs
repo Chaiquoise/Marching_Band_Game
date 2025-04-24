@@ -98,7 +98,7 @@ public class RoundCounter : MonoBehaviour
 
         TurnOrderIndex = 0;
 
-        firstTurn = true;
+        //firstTurn = true;
 
 
     }

@@ -62,6 +62,10 @@ public class GoldNoteAction : MonoBehaviour
 
         roundCounter.GetComponent<RoundCounter>().DamageAllEnemies();
         //roundCounter.GetComponent<RoundCounter>().RemoveGoldenShield();
+        letterManager.GetComponent<LetterButton>().endGoldenNote();
+
+
+
 
     }
 }

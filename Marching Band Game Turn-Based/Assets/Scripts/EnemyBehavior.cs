@@ -67,13 +67,21 @@ public class EnemyBehavior : MonoBehaviour
 
     public void LoseSomeShield(string note)
     {
-
-        Debug.Log($"index 0 is {shieldNoteValues[0]}");
-        Debug.Log($"value coming in from string is {note}");
-        if (shieldNoteValues[0] == note)
+        if (shieldNoteValues.Count == 0)
         {
-            shieldNoteValues.RemoveAt(0);
-            shieldDisplay.text = string.Join("", shieldNoteValues);
+            Debug.Log("EXTRA DAMAGE!!");
+            hp -= 10;
+            HpBar.value = hp;
+        }
+        else
+        {
+            Debug.Log($"index 0 is {shieldNoteValues[0]}");
+            Debug.Log($"value coming in from string is {note}");
+            if (shieldNoteValues[0] == note)
+            {
+                shieldNoteValues.RemoveAt(0);
+                shieldDisplay.text = string.Join("", shieldNoteValues);
+            }
         }
 
         //remove one of the shield vals

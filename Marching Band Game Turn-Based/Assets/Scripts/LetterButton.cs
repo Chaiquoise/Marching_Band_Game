@@ -38,7 +38,7 @@ public class LetterButton : MonoBehaviour
 
     public GameObject enemy;
 
-    public GameObject player1;
+    public GameObject player1; //references to band members
     public GameObject player2;
     public GameObject player3;
     public GameObject player4;
@@ -305,6 +305,20 @@ public class LetterButton : MonoBehaviour
         goldNote.SetActive(true);
 
         
+
+    }
+
+    public void endGoldenNote()
+    {
+        BIGA.SetActive(true);
+        BIGE.SetActive(true);
+        BIGG.SetActive(true);
+        BIGC.SetActive(true);
+        turnsPassed = 0;
+
+        goldNoteButton.SetActive(false);
+
+
 
     }
 
