@@ -204,7 +204,7 @@ public class LetterButton : MonoBehaviour
                 ChosenLetter.SetActive(true);
 
                 // Calculate the new position based on the number of button presses
-                Vector3 newPosition = new Vector3(turnsPassed * offsetAmt + xPos, yPos, 0); // Adjusting the x-position
+                Vector3 newPosition = new Vector3(turnsPassed * offsetAmt + xPos, yPos, -2); // Adjusting the x-position
 
                 // Apply the new position to the ChosenLetter
                 ChosenLetter.transform.position = newPosition;
