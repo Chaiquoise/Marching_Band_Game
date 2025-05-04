@@ -46,6 +46,7 @@ public class LetterButton : MonoBehaviour
     public GameObject referenceToGoldNote; //reference to the empty gameobject that holds gold note script
 
     public GameObject goldNoteButton; //golden note we can press for end of round effect
+    public GameObject goldParticle; //particle effect for when we get to choose golden note
 
 
     public bool secondSelect = false;
@@ -305,6 +306,7 @@ public class LetterButton : MonoBehaviour
         referenceToGoldNote.GetComponent<GoldNoteAction>().buttonList = buttonList;
 
         goldNote.SetActive(true);
+        goldParticle.SetActive(true);
     }
 
     public void endGoldenNote()
@@ -319,6 +321,7 @@ public class LetterButton : MonoBehaviour
         gameManager.GetComponent<RoundCounter>().MoveForwardTurn(); //resetting our turn order to 0
 
         goldNoteButton.SetActive(false);
+        goldParticle.SetActive(false);
     }
 
 }
