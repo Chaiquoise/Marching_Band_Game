@@ -11,8 +11,7 @@ public class HolyGatorade : MonoBehaviour
     {
         if (!onCooldown)
         {
-            izzy.SetActive(true);
-            onCooldown = true;
+            izzy.GetComponent<izzyAnim>().bringGatorade();
         }
     }
 
