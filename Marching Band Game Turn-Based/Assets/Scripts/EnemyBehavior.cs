@@ -37,6 +37,10 @@ public class EnemyBehavior : MonoBehaviour
     {
         //write code for when enemy dies here
         //probably access an animator and trigger a death animation
+        roundCounter.GetComponent<RoundCounter>().EnemyList.Remove(refToParent);
+        roundCounter.GetComponent<RoundCounter>().success += 1;
+        roundCounter.GetComponent<RoundCounter>().resetTarget(); //to reset the targeted enemy in script to one not dead
+        Destroy(gameObject);
     }
 
     public void Attack(GameObject playerName) 

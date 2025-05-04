@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoundCounter : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class RoundCounter : MonoBehaviour
     public string selectedButton; //button that was just pressed
     public int TurnOrderIndex = 0;
 
+    public int success = 0; //countdown to winning
+
     public bool firstTurn = true;
 
     private List<Transform> targetList = new List<Transform>(); //remember any targets we've seen before
@@ -33,6 +36,14 @@ public class RoundCounter : MonoBehaviour
         MoveForwardTurn();
 
         SetNewTarget(initialTarget);
+    }
+
+    void Update()
+    {
+        if (success > 1)
+        {
+            SceneManager.LoadScene("victory");
+        }
     }
 
     public void MoveForwardTurn()
@@ -149,6 +160,7 @@ public class RoundCounter : MonoBehaviour
     }
     public void DamageAllEnemies()
     {
+        
         foreach (GameObject enemy in EnemyList)
         {
             enemy.GetComponent<EnemyBehavior>().TakeDmg(20);
@@ -160,5 +172,9 @@ public class RoundCounter : MonoBehaviour
         {
             enemy.GetComponent<EnemyBehavior>().LoseSomeShield("#");
         }
+    }
+    public void resetTarget()
+    {
+        SetNewTarget(EnemyList[0]);
     }
 }
