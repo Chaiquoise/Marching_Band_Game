@@ -81,10 +81,6 @@ public class LetterButton : MonoBehaviour
         IncrementRound(); //move us forward one round once a button is pressed
         //calling the RoundCounter to make sure we know what round it is + update our turn arrow
 
-                
-        
-
-
         string stringButton = ChosenLetter.ToString();
         Debug.Log("Chosen Letter (In letter button) is :" + ChosenLetter);
         Debug.Log("String Version (In letter button) is :" + stringButton);
