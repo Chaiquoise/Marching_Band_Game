@@ -83,7 +83,7 @@ public class LetterButton : MonoBehaviour
 
                 
         
-    //gameManager.GetComponent<RoundCounter>().MakeAttack(turnsPassed, ChosenLetter);
+
 
         string stringButton = ChosenLetter.ToString();
         Debug.Log("Chosen Letter (In letter button) is :" + ChosenLetter);
